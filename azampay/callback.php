@@ -3,7 +3,7 @@
 $log_file = '../webhook.log';
 $timestamp = date('Y-m-d H:i:s');
 
-$log = "\n=== $timestamp - AZAMPAY IPN ===\n";
+$log = "\n=== $timestamp - AZAMPAY CallBack URL ===\n";
 $log .= "Method: " . $_SERVER['REQUEST_METHOD'] . "\n";
 $log .= "POST Data: " . print_r($_POST, true) . "\n";
 $log .= "Raw Input: " . file_get_contents('php://input') . "\n";
