@@ -1,15 +1,18 @@
 <?php
-// Pesapal Callback Handler
-$log_file = '../webhook.log';
-$timestamp = date('Y-m-d H:i:s');
-
-$log = "\n=== $timestamp - PESAPAL WEBHOOK ===\n";
-$log .= "Method: " . $_SERVER['REQUEST_METHOD'] . "\n";
-$log .= "POST Data: " . print_r($_POST, true) . "\n";
-$log .= "Raw Input: " . file_get_contents('php://input') . "\n";
-
-file_put_contents($log_file, $log, FILE_APPEND);
 
 http_response_code(200);
-echo "Pesapal Webhook Received - OK";
-?>
+
+$data = file_get_contents("php://input");
+
+file_put_contents(
+    __DIR__.'/ipn.log',
+    date('Y-m-d H:i:s') . PHP_EOL .
+    $data . PHP_EOL .
+    "--------------------" . PHP_EOL,
+    FILE_APPEND
+);
+
+
+echo json_encode([
+    "success" => true
+]);
