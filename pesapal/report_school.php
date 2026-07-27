@@ -39,6 +39,7 @@
             if (!is_file($configFile)) {
                 throw new RuntimeException('relay/report_config.php not found.');
             }
+            die($configFile);
             $config = require $configFile;
         } catch (Throwable $e) {
             error_log('[Relay][report_school] Config load failed: ' . $e->getMessage());
